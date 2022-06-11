@@ -1,6 +1,6 @@
 module.exports = {
     
-     database: {
-        URI: ''
-    }
-}
+    database: {
+        URI: 'mongodb://localhost/imagenLike'
+    },
+};
