@@ -13,7 +13,7 @@ module.exports = app => {
 
     //Configuración del puerto
     app.set('port', process.env.PORT || 3000);
-    app.set('views', path.join(__dirname, 'views'));
+    app.set('views', path.join(__dirname, '../views'));
     
     //Permite el uso y configuración de handlebars
     app.engine('.hbs', exphbs.engine({
