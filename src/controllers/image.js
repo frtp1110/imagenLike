@@ -17,7 +17,7 @@ ctrl.create = (req, res) => {
         const imgUrl = randomNumber();
 
         //Validación en caso repita el nombre de una imagen que ya esta registrada
-        const images = await Image.find({filename: imgUrl + ext});
+        const images = await Image.find({filename: imgUrl});
     
         if(images.length > 0){
             saveImage();
@@ -25,7 +25,7 @@ ctrl.create = (req, res) => {
             console.log(imgUrl);
             const imageTempPath = req.file.path;
             const ext = path.extname(req.file.originalname).toLowerCase();
-            const targetPath = path.resolve('src/public/upload/' + imgUrl)
+            const targetPath = path.resolve('src/public/upload/' + imgUrl + ext);
 
             if(ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.gif'){
                 await fs.rename(imageTempPath, targetPath);
