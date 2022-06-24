@@ -17,6 +17,7 @@
     "fs-extra": "^10.1.0",
     "handlebars": "^4.7.7",
     "md5": "^2.3.0",
+    "moment": "^2.29.3",
     "mongoose": "^6.3.6",
     "moongose": "^1.0.0",
     "morgan": "^1.10.0",

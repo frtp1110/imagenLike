@@ -6,8 +6,11 @@ const { Image } = require('../models');
 
 const ctrl = {};
 
-ctrl.index = (req, res) => {
-
+ctrl.index = async (req, res) => {
+    //Permite encontrar una determinada imagen y retornarla
+    const image = await Image.findOne({filename: {$regex: req.params.image_id}});
+    console.log(image);
+    res.render('image', {image});
 };
 
 ctrl.create = (req, res) => {
@@ -35,9 +38,9 @@ ctrl.create = (req, res) => {
                     description: req.body.description
                 });
                 const imageSaved = await newImg.save();
-                //res.redirect('/images');
-                res.send('Recibido!');
-                //console.log(newImg)
+                //res.send('Recibido!');
+                //console.log(newImg);
+                res.redirect('/images/' + imgUrl);
             }else{
                 //No permite que los archivos que no sean los del formato de imagen se suban al servidor
                 await fs.unlink(imageTempPath);
