@@ -12,5 +12,5 @@ const {database} = require('./keys');
 mongoose.connect(database.URI, {
     useNewUrlParser: true
 })
-    .then(db => console.log('Database is connected'))
+    .then(db => console.log('Se estableció conexión con la database'))
     .catch(err => console.error(err));
