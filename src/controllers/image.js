@@ -57,7 +57,8 @@ ctrl.like = (req, res) => {
 };
 
 ctrl.comment = (req, res) => {
-    
+    console.log(req.body);
+    res.send('Comentario!')
 };
 
 ctrl.remove = (req, res) => {
