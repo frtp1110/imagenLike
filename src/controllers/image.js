@@ -9,21 +9,26 @@ const { CommentsController } = require('moongose/controller');
 const ctrl = {};
 
 ctrl.index = async (req, res) => {
+    const viewModel = { image: {}, comments: {}};
     //Permite encontrar una determinada imagen y retornarla
     const image = await Image.findOne({filename: {$regex: req.params.image_id}});
-    //console.log(image);
-    image.views = image.views + 1;
-    await image.save();
-    const comments = await Comment.find({image_id: image._id});
-    res.render('image', {image, comments});
+
+    if(image){
+        image.views = image.views + 1;
+        viewModel.image = image;
+        await image.save();
+        const comments = await Comment.find({image_id: image._id});
+        viewModel.comments = comments;
+        res.render('image', viewModel);
+    }else{
+        res.redirect('/');
+    }
+    
 };
 
-ctrl.create = (req, res) => {
-    //console.log(req.file);
-    
+ctrl.create = (req, res) => {    
     const saveImage = async () => {
         const imgUrl = randomNumber();
-
         //Validación en caso repita el nombre de una imagen que ya esta registrada
         const images = await Image.find({filename: imgUrl});
     
@@ -43,8 +48,6 @@ ctrl.create = (req, res) => {
                     description: req.body.description
                 });
                 const imageSaved = await newImg.save();
-                //res.send('Recibido!');
-                //console.log(newImg);
                 res.redirect('/images/' + imgUrl);
             }else{
                 //Evita que los archivos que no sean los del formato de imagen se suban al servidor
@@ -68,10 +71,10 @@ ctrl.comment = async (req, res) => {
         const newComment = new Comment(req.body);
         newComment.gravatar = md5(newComment.email);
         newComment.image_id = image._id;
-        //console.log(newComment);
         await newComment.save();
-        //res.send('Comentario!');
         res.redirect('/images/' + image.uniqueId);
+    }else{
+        res.redirect('/');
     }
 };
 
