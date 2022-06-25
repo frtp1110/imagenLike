@@ -12,6 +12,8 @@ ctrl.index = async (req, res) => {
     //Permite encontrar una determinada imagen y retornarla
     const image = await Image.findOne({filename: {$regex: req.params.image_id}});
     //console.log(image);
+    image.views = image.views + 1;
+    await image.save();
     const comments = await Comment.find({image_id: image._id});
     res.render('image', {image, comments});
 };
@@ -45,7 +47,7 @@ ctrl.create = (req, res) => {
                 //console.log(newImg);
                 res.redirect('/images/' + imgUrl);
             }else{
-                //No permite que los archivos que no sean los del formato de imagen se suban al servidor
+                //Evita que los archivos que no sean los del formato de imagen se suban al servidor
                 await fs.unlink(imageTempPath);
                 res.status(500).json({error: 'Solo se permiten imágenes'});
             }
