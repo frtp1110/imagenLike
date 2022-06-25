@@ -14,7 +14,6 @@ ctrl.index = async (req, res) => {
     //console.log(image);
     const comments = await Comment.find({image_id: image._id});
     res.render('image', {image, comments});
-    
 };
 
 ctrl.create = (req, res) => {
