@@ -18,4 +18,6 @@ module.exports = app => {
     router.delete('/images/:image_id', image.remove);
 
     app.use(router);
+
+    //console.log();
 }
