@@ -11,8 +11,9 @@ const ctrl = {};
 ctrl.index = async (req, res) => {
     //Permite encontrar una determinada imagen y retornarla
     const image = await Image.findOne({filename: {$regex: req.params.image_id}});
-    console.log(image);
-    res.render('image', {image});
+    //console.log(image);
+    const comments = await Comment.find({image_id: image._id});
+    res.render('image', {image, comments});
 };
 
 ctrl.create = (req, res) => {
