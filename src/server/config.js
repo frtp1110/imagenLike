@@ -2,7 +2,6 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const Handlebars = require('handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
-
 const morgan = require('morgan');
 const multer = require('multer');
 const express = require('express');
