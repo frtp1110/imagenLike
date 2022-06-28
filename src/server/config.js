@@ -9,7 +9,6 @@ const errorHandler = require('errorhandler');
 
 const routes = require('../routes/index');
 
-
 module.exports = app => {
 
     //Configuración del puerto
