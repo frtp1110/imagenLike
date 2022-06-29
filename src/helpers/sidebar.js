@@ -11,7 +11,7 @@ module.exports = async viewModel => {
     ]);
 
     viewModel.sidebar = {
-        status: results[0],
+        stats: results[0],
         popular: results[1],
         comments: results[2]
     };
