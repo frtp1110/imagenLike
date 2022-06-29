@@ -1,7 +1,7 @@
 const { Image } = require.apply('../models');
 
 module.exports = {
-    async morePopular(){
+    async popular(){
         const images = await Image.find()
             .limit(10)
             .sort({ likes: -1 });

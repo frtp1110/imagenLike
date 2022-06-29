@@ -12,20 +12,24 @@ async function commentsCounter(){
 
 //Contador del total de vistas de las imágenes
 async function imageTotalViewsCounter(){
-    const result = await Image.aggregate([{$group: {
-        _id: '1',
-        viewsTotal: {$sum: '$views'}
-    }}]);
+    const result = await Image.aggregate([{
+        $group: {
+            _id: '1',
+            viewsTotal: {$sum: '$views'}
+        }
+    }]);
 
     return result[0].viewsTotal;
 }
 
 //Contador del total de likes 
 async function likesTotalCounter(){
-    const result = await Image.aggregate([{$group: {
-        _id: '1',
-        likesTotal: {$sum: '$views'}
-    }}]);
+    const result = await Image.aggregate([{
+        $group: {
+            _id: '1',
+            likesTotal: {$sum: '$views'}
+        }
+    }]);
 
     return result[0].likesTotal;
 }
