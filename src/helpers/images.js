@@ -1,4 +1,4 @@
-const { Image } = require.apply('../models');
+const { Image } = require('../models');
 
 module.exports = {
     async popular(){

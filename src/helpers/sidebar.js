@@ -4,7 +4,7 @@ const Comments = require('./comments');
 
 module.exports = async viewModel => {
 
-    await Promise.all([
+    const results = await Promise.all([
         Stats(),
         Images.popular(),
         Comments.newest()
