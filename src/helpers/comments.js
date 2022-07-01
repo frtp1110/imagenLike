@@ -10,7 +10,7 @@ module.exports = {
         //Recorre el arreglo de comentarios
         for (const comment of comments){
             //Trae la imagen asociada al comentario para mostrarla en pantalla
-            const image = Image.findOne({_id: comment.image_id});
+            const image = await Image.findOne({_id: comment.image_id});
             comment.image = image; 
         }
 

@@ -16,4 +16,13 @@ const CommentSchema = new Schema({
     timestamp: { type: Date, default: Date.now}
 });
 
+//Variable virtual para obtner los comentarios asociados a la imagen
+CommentSchema.virtual('image')
+    .set(function(image){
+        this._image = image;
+    })
+    .get(function(){
+        return this._image;
+    });
+
 module.exports = model('Comment', CommentSchema);

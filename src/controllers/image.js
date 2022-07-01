@@ -25,7 +25,6 @@ ctrl.index = async (req, res) => {
     }else{
         res.redirect('/');
     }
-    
 };
 
 ctrl.create = (req, res) => {    
