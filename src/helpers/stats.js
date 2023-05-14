@@ -1,6 +1,6 @@
 const { Comment, Image } = require('../models');
 
-//Contador del total de imágenes a
+//Contador del total de imágenes
 async function imageCounter(){
     return await Image.countDocuments();
 }
